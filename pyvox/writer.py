@@ -46,8 +46,6 @@ class VoxWriter(object):
         for m in self.vox.models:
             chunks.append((b'SIZE', pack('iii', *m.size)))
             chunks.append((b'XYZI', pack('i', len(m.voxels)) + b''.join(pack('BBBB', *v) for v in m.voxels)))
-
-        if not self.vox.default_palette:
             chunks.append((b'RGBA', b''.join(pack('BBBB', *c) for c in self.vox.palette)))
 
         for m in self.vox.materials:
